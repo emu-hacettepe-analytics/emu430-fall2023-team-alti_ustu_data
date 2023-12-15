@@ -19,4 +19,13 @@ sidebar: no
 
 # Project Topic
 
+As you know, air pollution has increased significantly since the Industrial Revolution (1760). There are many known and unknown reasons for this. We have done this study in order to examine and analyse these reasons. We have chosen to observe \"Average of "PM10 values of the
+stations\" and \"Forest area per km\^2\". We aim to determine the relationship between air
+pollution and forestation rate by using these data. To accomplish this, first we are going to
+monitorize both data by using plots then we are going to do some correlation analysis. After
+that, we will find outliners and try to figure out the reasons of them. We might need extra data
+sets to make a reasonable explanation.
+
 # Data Set
+
+1.  [Data Set](https://data.tuik.gov.tr/Bulten/Index?p=Illerde-Yasam-Endeksi-2015-24561)
