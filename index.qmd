@@ -1,23 +1,21 @@
 ---
-title: "Team XXX"
-sidebar: false 
+title: "Team Altı Üstü Data"
+sidebar: no
 ---
-
-This is our project webpage.
-
-Please stay tuned to follow our project activities.
-
-This is our template.
 
 # Team Members
 
-1.  [Edin_Džeko](https://tr.wikipedia.org/wiki/Edin_D%C5%BEeko)
+1.  [Berkant Aytemir](https://github.com/berkantaytemir)
 
-2.  [Dušan Tadić](https://tr.wikipedia.org/wiki/Du%C5%A1an_Tadi%C4%87)
+2.  [Artun Üstünol](https://github.com/artunustunol)
 
-3.  [Frederico Rodrigues de Paula Santos](https://tr.wikipedia.org/wiki/Fred_(1993_do%C4%9Fumlu_futbolcu))
+3.  [Serhat Eralp Sırmabıyıklı](https://github.com/serhateralp01)
 
-4.  [Sebastian Szymański](https://tr.wikipedia.org/wiki/Sebastian_Szyma%C5%84ski)
+4.  [Ada Su Köksal](https://github.com/adasukoksal)
+
+5.  [Gizem Yılmaz](https://github.com/gızemyılmaz)
+
+6.  [Zeynep Yanmaz](https://github.com/zeynepyanmaz)
 
 # Project Topic
 
