@@ -13,7 +13,7 @@ sidebar: no
 
 4.  [Ada Su Köksal](https://github.com/adasukoksal)
 
-5.  [Gizem Yılmaz](https://github.com/gızemyılmaz)
+5.  [Gizem Yılmaz](https://github.com/thegizemyilmaz)
 
 6.  [Zeynep Yanmaz](https://github.com/zeynepyanmaz)
 
