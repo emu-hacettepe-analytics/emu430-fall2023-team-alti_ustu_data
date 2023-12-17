@@ -25,12 +25,15 @@ website:
     center: "Hacettepe IE - EMU 430 - Fall 2023" 
     border: true
 format:
-  html:
+ html:
+    mainfont : arial
+    fontcolor: "#FFFCFC"
+    linkcolor: "#F49F9F"
     toc: true
     toc-location: left
     theme: 
-      light: simplex 
-      dark: cyborg
+      light: darkly
+      dark: darkly
     css: styles.css
 
 
