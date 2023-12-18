@@ -7,7 +7,7 @@ Our dataset consists of 3 columns. Provinces, pm10_values and forest area. Provi
 Here is some additional analysis for our project ( we'll be use provinces further in our analysis):
 
 ```{r}
-# Loading necessary libraries
+# Libraries
 library(ggplot2)
 library(dplyr)
 library(gridExtra)
@@ -18,12 +18,11 @@ data1 <- "https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2
 project_data <- read.csv(data1)
 
 # Data Summary
-summary_data <- project_data %>%
-  summarise(
-    Average_PM10 = mean(pm10_values, na.rm = TRUE),
-    SD_PM10 = sd(pm10_values, na.rm = TRUE),
-    Average_Forest_Area = mean(forest_area, na.rm = TRUE),
-    SD_Forest_Area = sd(forest_area, na.rm = TRUE)
+summary_data <- project_data %>% summarise(
+    Avg_PM10 = mean(pm10_values),
+    SD_PM10 = sd(pm10_values),
+    Avg_Forest_Area = mean(forest_area),
+    SD_Forest_Area = sd(forest_area)
   )
 
 # Histogram of PM10 Values
@@ -43,7 +42,7 @@ p2 <- ggplot(project_data, aes(x = forest_area)) +
 # Scatter Plot with Regression Line
 p3 <- ggplot(project_data, aes(x = pm10_values, y = forest_area)) +
   geom_point(color = "red") +
-  labs(title = "Scatter Plot of PM10 Values vs Forest Area",
+  labs(title = "Scatter Plot of PM10 Values Compared to Forest Area",
        x = "PM10 Values", y = "Forest Area")
 
 # Display the plots
@@ -52,4 +51,5 @@ grid.arrange(p1, p2, p3, ncol = 1)
 data1 <- "https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/project_data.csv"
 
 summary_data
+
 ```
