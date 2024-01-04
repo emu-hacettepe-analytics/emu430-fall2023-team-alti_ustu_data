@@ -1,4 +1,4 @@
-﻿Şehirler,Yangın Sayısı Adet               (Number),Yanan Hektar Hectare,PM10 Values
+﻿Şehirler,Yangın Sayısı Adet(Number),Yanan Hektar Hectare,PM10 Values
 Adana,128,84.15,44.8
 Adıyaman,19,49.2,71.0
 Afyonkarahisar,6,2.7,81.0
@@ -80,8 +80,3 @@ Van,3,2,49.0
 Yalova,2,1.54,33.0
 Yozgat,8,16.3,42.0
 Zonguldak,17,30.34,64.5
-,,,
-,,,
-,,,
-Şırnak,14,32,
-Siirt,5,50.38,
