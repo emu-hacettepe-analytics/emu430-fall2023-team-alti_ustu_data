@@ -88,3 +88,4 @@ ggplot(bölgeler_arac_sayısı, aes(x = toplam, y = PM10)) +
   labs(x = "Araç Sayısı", y = "PM10 Değerleri", 
        title = "PM10 ve Araç Sayısı Arasındaki İlişki")
 ```
+  
