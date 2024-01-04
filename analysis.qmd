@@ -2,9 +2,9 @@
 title: "Analysis"
 ---
 
-Our data set consists of 3 columns. Provinces, pm10_values and forest area. Provinces are categorical variables representing the geographical location or provinces in Turkey, pm10_values are quantitative variables representing the average PM10 values, a common measure of air quality, higher values indicate higher levels of air pollution and forest_area values are quantitative variables representing the percentage of forest area per square kilometer. It reflects the extent of forest coverage in each province. The distribution of PM10 values across provinces can be visualized using a histogram. This would provide insights into the range and frequency of air pollution levels. The distribution of forest area percentages can be visualized using a histogram as well. This helps understand the variation in forest coverage among provinces. Correlation between PM10 values and forest area can be visually represented with a scatter plot. We can compare provinces in different regions of Turkey to identify regional patterns in air pollution and forest area. A bar chart or grouped box plot can be useful for such comparisons.We can Rank provinces based on PM10 values and forest area to identify provinces with the highest and lowest values. This can be visualized using bar charts or a dual-axis plot.
+Our dataset consists of 3 columns. Provinces, pm10_values and forest area. Provinces are categorical variables representing the geographical location or provinces in Turkey, pm10_values are quantitative variables representing the average PM10 values, a common measure of air quality, higher values indicate higher levels of air pollution and forest_area values are quantitative variables representing the percentage of forest area per square kilometer. It reflects the extent of forest coverage in each province. The distribution of PM10 values across provinces can be visualized using a histogram. This would provide insights into the range and frequency of air pollution levels. The distribution of forest area percentages can be visualized using a histogram as well. This helps understand the variation in forest coverage among provinces. Correlation between PM10 values and forest area can be visually represented with a scatter plot. We can ompare provinces in different regions of Turkey to identify regional patterns in air pollution and forest area. A bar chart or grouped box plot can be useful for such comparisons.We can Rank provinces based on PM10 values and forest area to identify provinces with the highest and lowest values. This can be visualized using bar charts or a dual-axis plot.
 
-Here is some additional analysis for our project ( we'll be use provinces further in our analysis):
+Here is some additional analysis for our project ( we'll be use provinces further in our analysis) :
 
 ```{r}
 # Libraries
@@ -52,4 +52,39 @@ data1 <- "https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2
 
 summary_data
 
+```
+
+
+
+  As you can see, contrary to our expectations, the PM10 values do not decrease as forest area increases. While in some places, the correlation might align with expectations, in most areas, there isn't a clear inverse relationship. Drawing from some articles, we can explain the reasons as follows:
+  
+1. 'More forest means more pollen.' Pollens contribute to the increase in PM10 levels. Thus, in cities with abundant forest areas, the rise in PM10 levels is attributed to this factor.
+
+2. Particles resulting from forest fires increase PM10 levels. While forest density and forest fires may not follow a linear positive relationship, the likelihood of forest fires increases with forest density, potentially leading to an associated increase in PM10 levels.
+
+3. ***Emissions from vehicles increase PM10 levels. In a scenario with dense forest areas and heavy traffic, a proportional relationship between PM10 levels and forest area might be inevitable.
+
+4. Even if the forest area is not dense, a natural environment less affected by human factors is expected to have lower PM10 levels."
+
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(scales)
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
+
+data2 <-"https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/bolgelerin_arac_sayilari_2015.csv"
+data2_cleaned <- read.csv(data2)
+bölgeler_arac_sayısı <- na.omit(data2_cleaned)
+
+corelation <- cor.test(bölgeler_arac_sayısı$toplam, bölgeler_arac_sayısı$PM10)
+
+ggplot(bölgeler_arac_sayısı, aes(x = toplam, y = PM10)) +
+  geom_point() +
+  geom_text(aes(label = Bölgeler), vjust = -1, size = 3) +
+  geom_smooth(method = lm, se = FALSE) + 
+  scale_x_continuous(labels = scales::comma) +
+  labs(x = "Araç Sayısı", y = "PM10 Değerleri", 
+       title = "PM10 ve Araç Sayısı Arasındaki İlişki")
 ```
