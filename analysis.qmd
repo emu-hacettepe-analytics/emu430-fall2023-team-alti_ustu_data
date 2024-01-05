@@ -92,6 +92,11 @@ ggplot(bölgeler_arac_sayısı, aes(x = toplam, y = PM10)) +
        title = "PM10 ve Araç Sayısı Arasındaki İlişki")
 ```
 
+Slide Title: Impact of Vehicle Numbers on PM10 Pollution
+
+"This plot correlates the number of vehicles to PM10 levels in Turkish regions. As vehicle numbers rise, so does PM10, indicating a direct link between traffic and air pollution."
+
+
 ```{r}
 
 library(readxl)
@@ -127,7 +132,26 @@ p <- ggplot(data=data, aes(x = reorder(Şehirler, Yanan.Hektar.Hectare), y = Yan
 
 
 print(p)
-  
+```
+"This bar graph ranks cities by the extent of land burned, with the least affected on the left and the most on the right."
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(ggplot2)
+library(gridExtra)
+
+url<-"https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/firedata_csv.csv"
+data<-read.csv(url)
+data[data=="_"]=0
+data<- data %>%
+  mutate(PM10.Values = ifelse(is.na(as.numeric(PM10.Values)), 0, as.numeric(PM10.Values)))
+data<- data %>%
+  mutate(Yanan.Hektar.Hectare = ifelse(is.na(as.numeric(Yanan.Hektar.Hectare)), 0, as.numeric(Yanan.Hektar.Hectare)))
+data<- data %>%
+  mutate(Yangın.Sayısı.Adet.Number. = ifelse(is.na(as.numeric(Yangın.Sayısı.Adet.Number.)), 0, as.numeric(Yangın.Sayısı.Adet.Number.)))
 cool_theme <- theme_minimal() +
   theme(panel.grid = element_blank(),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
@@ -141,8 +165,26 @@ p <- ggplot(data=data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y 
        y = "Yanan Hektar") +
   cool_theme
 
+```
+"This bar chart orders cities alphabetically, showing varying levels of land burned in each city."
 
-print(p)
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(ggplot2)
+library(gridExtra)
+
+url<-"https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/firedata_csv.csv"
+data<-read.csv(url)
+data[data=="_"]=0
+data<- data %>%
+  mutate(PM10.Values = ifelse(is.na(as.numeric(PM10.Values)), 0, as.numeric(PM10.Values)))
+data<- data %>%
+  mutate(Yanan.Hektar.Hectare = ifelse(is.na(as.numeric(Yanan.Hektar.Hectare)), 0, as.numeric(Yanan.Hektar.Hectare)))
+data<- data %>%
+  mutate(Yangın.Sayısı.Adet.Number. = ifelse(is.na(as.numeric(Yangın.Sayısı.Adet.Number.)), 0, as.numeric(Yangın.Sayısı.Adet.Number.)))
 ggplot(data=data, aes(x = Şehirler)) +
   geom_col(aes(y = Yanan.Hektar.Hectare), fill = 'blue', width = 0.7) +
   geom_point(aes(y = Yangın.Sayısı.Adet.Number.)) +
@@ -151,6 +193,30 @@ ggplot(data=data, aes(x = Şehirler)) +
   labs(title = "Dual Axis Chart", x = "Şehirler", y = "Tahrip Olan Alan ( Hektar)") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
+```
+"In this dual-axis chart, we're looking at two related pieces of data across various cities. The red line graph shows the number of fire incidents, while the blue bars measure the actual damage caused by these fires, in hectares.
+
+A quick observation reveals that higher frequencies of fires don't always correspond to more extensive damage — some cities with fewer fires have experienced greater destruction, suggesting variability in fire severity or effectiveness of fire management strategies.
+
+This data can inform emergency services, guiding resource allocation and prevention measures."
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(ggplot2)
+library(gridExtra)
+
+url<-"https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/firedata_csv.csv"
+data<-read.csv(url)
+data[data=="_"]=0
+data<- data %>%
+  mutate(PM10.Values = ifelse(is.na(as.numeric(PM10.Values)), 0, as.numeric(PM10.Values)))
+data<- data %>%
+  mutate(Yanan.Hektar.Hectare = ifelse(is.na(as.numeric(Yanan.Hektar.Hectare)), 0, as.numeric(Yanan.Hektar.Hectare)))
+data<- data %>%
+  mutate(Yangın.Sayısı.Adet.Number. = ifelse(is.na(as.numeric(Yangın.Sayısı.Adet.Number.)), 0, as.numeric(Yangın.Sayısı.Adet.Number.)))
 data_sorted <- data[order(data$Yanan.Hektar.Hectare), ]
 
 
@@ -159,8 +225,5 @@ ggplot(data_sorted, aes(x = Yanan.Hektar.Hectare, y = PM10.Values)) +
   labs(title = "Scatter Plot of PM10 Values vs. Yanan.Hektar.Hectare",
        x = "Yanan.Hektar.Hectare", y = "PM10 Values") +
   theme_minimal()
-
-
-
-
 ```
+"This scatter plot maps the relationship between PM10 air pollution levels and the area of land burned, measured in hectares. There's no clear correlation visible from the data points; however, most instances of higher PM10 values do not necessarily coincide with larger burned areas. This suggests that factors other than air pollution may play a more significant role in the extent of land affected by fires."
