@@ -6,6 +6,12 @@ Our dataset consists of 3 columns. Provinces, pm10_values and forest area. Provi
 
 Here is some additional analysis for our project ( we'll be use provinces further in our analysis) :
 
+library(ggplot2)
+
+library(dplyr)
+
+library(gridExtra)
+
 ```{r}
 # Libraries
 library(ggplot2)
@@ -93,7 +99,7 @@ library(dplyr)
 library(ggplot2)
 library(scales)
 library(ggplot2)
-
+library(gridExtra)
 
 cool_theme <- theme_minimal() +
   theme(panel.grid = element_blank(),
