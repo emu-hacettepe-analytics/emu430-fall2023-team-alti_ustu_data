@@ -54,18 +54,15 @@ summary_data
 
 ```
 
+As you can see, contrary to our expectations, the PM10 values do not decrease as forest area increases. While in some places, the correlation might align with expectations, in most areas, there isn't a clear inverse relationship. Drawing from some articles, we can explain the reasons as follows:
 
+1.  'More forest means more pollen.' Pollens contribute to the increase in PM10 levels. Thus, in cities with abundant forest areas, the rise in PM10 levels is attributed to this factor.
 
-  As you can see, contrary to our expectations, the PM10 values do not decrease as forest area increases. While in some places, the correlation might align with expectations, in most areas, there isn't a clear inverse relationship. Drawing from some articles, we can explain the reasons as follows:
-  
-1. 'More forest means more pollen.' Pollens contribute to the increase in PM10 levels. Thus, in cities with abundant forest areas, the rise in PM10 levels is attributed to this factor.
+2.  Particles resulting from forest fires increase PM10 levels. While forest density and forest fires may not follow a linear positive relationship, the likelihood of forest fires increases with forest density, potentially leading to an associated increase in PM10 levels.
 
-2. Particles resulting from forest fires increase PM10 levels. While forest density and forest fires may not follow a linear positive relationship, the likelihood of forest fires increases with forest density, potentially leading to an associated increase in PM10 levels.
+3.  \*\*\*Emissions from vehicles increase PM10 levels. In a scenario with dense forest areas and heavy traffic, a proportional relationship between PM10 levels and forest area might be inevitable.
 
-3. ***Emissions from vehicles increase PM10 levels. In a scenario with dense forest areas and heavy traffic, a proportional relationship between PM10 levels and forest area might be inevitable.
-
-4. Even if the forest area is not dense, a natural environment less affected by human factors is expected to have lower PM10 levels."
-
+4.  Even if the forest area is not dense, a natural environment less affected by human factors is expected to have lower PM10 levels."
 
 ```{r}
 library(readxl)
@@ -88,4 +85,77 @@ ggplot(bölgeler_arac_sayısı, aes(x = toplam, y = PM10)) +
   labs(x = "Araç Sayısı", y = "PM10 Değerleri", 
        title = "PM10 ve Araç Sayısı Arasındaki İlişki")
 ```
+
+```{r}
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(ggplot2)
+
+
+cool_theme <- theme_minimal() +
+  theme(panel.grid = element_blank(),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        plot.title = element_text(face = "bold", size = 16),
+        axis.title = element_text(face = "bold", size = 14))
+
+
+p <- ggplot(data, aes(x = reorder(Şehirler, Yanan.Hektar.Hectare), y = Yanan.Hektar.Hectare)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "darkblue") +
+  labs(title = "Bar Graph of Yanan Hektar by Şehirler Ascending Order",
+       x = "Şehirler",
+       y = "Yanan Hektar") +
+  cool_theme
+
+
+print(p)
   
+
+
+
+
+
+
+cool_theme <- theme_minimal() +
+  theme(panel.grid = element_blank(),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        plot.title = element_text(face = "bold", size = 16),
+        axis.title = element_text(face = "bold", size = 14))
+
+# Create the bar graph with cities ordered alphabetically
+p <- ggplot(data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yanan.Hektar.Hectare)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "darkblue") +
+  labs(title = "Bar Graph of Yanan Hektar by Şehirler Alphabetical Order",
+       x = "Şehirler",
+       y = "Yanan Hektar") +
+  cool_theme
+
+
+print(p)
+
+
+
+
+ggplot(data, aes(x = Şehirler)) +
+  geom_col(aes(y = Yanan.Hektar.Hectare), fill = 'blue', width = 0.7) +
+  geom_point(aes(y = Yangın.Sayısı.Adet.Number.)) +
+  geom_path(aes(y = Yangın.Sayısı.Adet.Number.), group = 1, colour = "red", size = 0.9) +
+  scale_y_continuous(sec.axis = sec_axis(trans = ~., name = "Yangın Sayısı")) +
+  labs(title = "Dual Axis Chart", x = "Şehirler", y = "Tahrip Olan Alan ( Hektar)") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+data_sorted <- data[order(data$Yanan.Hektar.Hectare), ]
+
+
+ggplot(data_sorted, aes(x = Yanan.Hektar.Hectare, y = PM10.Values)) +
+  geom_point() +
+  labs(title = "Scatter Plot of PM10 Values vs. Yanan.Hektar.Hectare",
+       x = "Yanan.Hektar.Hectare", y = "PM10 Values") +
+  theme_minimal()
+
+
+
+
+```
