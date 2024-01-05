@@ -101,6 +101,16 @@ library(scales)
 library(ggplot2)
 library(gridExtra)
 
+url<-"https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/firedata_csv.csv"
+data<-read.csv(url)
+data[data=="_"]=0
+data<- data %>%
+  mutate(PM10.Values = ifelse(is.na(as.numeric(PM10.Values)), 0, as.numeric(PM10.Values)))
+data<- data %>%
+  mutate(Yanan.Hektar.Hectare = ifelse(is.na(as.numeric(Yanan.Hektar.Hectare)), 0, as.numeric(Yanan.Hektar.Hectare)))
+data<- data %>%
+  mutate(Yangın.Sayısı.Adet.Number. = ifelse(is.na(as.numeric(Yangın.Sayısı.Adet.Number.)), 0, as.numeric(Yangın.Sayısı.Adet.Number.)))
+
 cool_theme <- theme_minimal() +
   theme(panel.grid = element_blank(),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
@@ -108,7 +118,7 @@ cool_theme <- theme_minimal() +
         axis.title = element_text(face = "bold", size = 14))
 
 
-p <- ggplot(data, aes(x = reorder(Şehirler, Yanan.Hektar.Hectare), y = Yanan.Hektar.Hectare)) +
+p <- ggplot(data=data, aes(x = reorder(Şehirler, Yanan.Hektar.Hectare), y = Yanan.Hektar.Hectare)) +
   geom_bar(stat = "identity", fill = "skyblue", color = "darkblue") +
   labs(title = "Bar Graph of Yanan Hektar by Şehirler Ascending Order",
        x = "Şehirler",
@@ -124,7 +134,7 @@ cool_theme <- theme_minimal() +
         plot.title = element_text(face = "bold", size = 16),
         axis.title = element_text(face = "bold", size = 14))
 
-p <- ggplot(data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yanan.Hektar.Hectare)) +
+p <- ggplot(data=data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yanan.Hektar.Hectare)) +
   geom_bar(stat = "identity", fill = "skyblue", color = "darkblue") +
   labs(title = "Bar Graph of Yanan Hektar by Şehirler Alphabetical Order",
        x = "Şehirler",
@@ -133,7 +143,7 @@ p <- ggplot(data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yan
 
 
 print(p)
-ggplot(data, aes(x = Şehirler)) +
+ggplot(data=data, aes(x = Şehirler)) +
   geom_col(aes(y = Yanan.Hektar.Hectare), fill = 'blue', width = 0.7) +
   geom_point(aes(y = Yangın.Sayısı.Adet.Number.)) +
   geom_path(aes(y = Yangın.Sayısı.Adet.Number.), group = 1, colour = "red", size = 0.9) +
