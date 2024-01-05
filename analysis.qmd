@@ -18,12 +18,12 @@ library(ggplot2)
 library(dplyr)
 library(gridExtra)
 
-# Read data from CSV file
+
 data1 <- "https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/project_data.csv"
 
 project_data <- read.csv(data1)
 
-# Data Summary
+
 summary_data <- project_data %>% summarise(
     Avg_PM10 = mean(pm10_values),
     SD_PM10 = sd(pm10_values),
@@ -31,27 +31,27 @@ summary_data <- project_data %>% summarise(
     SD_Forest_Area = sd(forest_area)
   )
 
-# Histogram of PM10 Values
+
 p1 <- ggplot(project_data, aes(x = pm10_values)) +
   geom_histogram(binwidth = 5, fill = "blue", color = "black") +
   theme_minimal() +
   labs(title = "Histogram of PM10 Values",
        x = "PM10 Values", y = "Frequency")
 
-# Histogram of Forest Area
+
 p2 <- ggplot(project_data, aes(x = forest_area)) +
   geom_histogram(binwidth = 5, fill = "green", color = "black") +
   theme_minimal() +
   labs(title = "Histogram of Forest Area",
        x = "Forest Area", y = "Frequency")
 
-# Scatter Plot with Regression Line
+
 p3 <- ggplot(project_data, aes(x = pm10_values, y = forest_area)) +
   geom_point(color = "red") +
   labs(title = "Scatter Plot of PM10 Values Compared to Forest Area",
        x = "PM10 Values", y = "Forest Area")
 
-# Display the plots
+
 grid.arrange(p1, p2, p3, ncol = 1)
 
 data1 <- "https://raw.githubusercontent.com/emu-hacettepe-analytics/emu430-fall2023-team-alti_ustu_data/master/project_data.csv"
@@ -118,19 +118,12 @@ p <- ggplot(data, aes(x = reorder(Şehirler, Yanan.Hektar.Hectare), y = Yanan.He
 
 print(p)
   
-
-
-
-
-
-
 cool_theme <- theme_minimal() +
   theme(panel.grid = element_blank(),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
         plot.title = element_text(face = "bold", size = 16),
         axis.title = element_text(face = "bold", size = 14))
 
-# Create the bar graph with cities ordered alphabetically
 p <- ggplot(data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yanan.Hektar.Hectare)) +
   geom_bar(stat = "identity", fill = "skyblue", color = "darkblue") +
   labs(title = "Bar Graph of Yanan Hektar by Şehirler Alphabetical Order",
@@ -140,10 +133,6 @@ p <- ggplot(data, aes(x = factor(Şehirler, levels = unique(Şehirler)), y = Yan
 
 
 print(p)
-
-
-
-
 ggplot(data, aes(x = Şehirler)) +
   geom_col(aes(y = Yanan.Hektar.Hectare), fill = 'blue', width = 0.7) +
   geom_point(aes(y = Yangın.Sayısı.Adet.Number.)) +

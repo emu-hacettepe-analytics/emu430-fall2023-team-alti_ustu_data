@@ -8,4 +8,4 @@ Our dataset is a critical component of our analysis, focusing on the interaction
 
 We found our data in TÜİK database, which is the official Turkish Statistical Institute. The database containing our data primarily provides information about the provinces' life satisfaction Index, which includes 11 dimensions of life, including housing, work life, income and wealth, health, education, environment, safety, involvement in society, access to infrastructure services, social life, and life satisfaction. In a single integrated index structure, it reflects these dimensions, which are represented by 41 indicators.
 
-You can find our data set [here](./project_data.RData).
+You can find our data set [here](./project_data.RData). :)
